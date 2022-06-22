@@ -313,7 +313,8 @@ SocketIoEngine.prototype.loadContextSocket = function(namespace, reconnect, cont
       Object.assign({},this.socketioOpts,{
         extraHeaders: {
           ...this.socketioOpts.extraHeaders,
-          ...context.extraHeaders
+          ...context.extraHeaders,
+          ...(context.vars.token ? { authorization: context.vars.token } : {}),
         },
         // Require to force socket.io-client to set new headers on connection to different Namespace
         forceNew: true,
